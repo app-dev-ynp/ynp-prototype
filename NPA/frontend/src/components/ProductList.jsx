@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './ProductList.css';
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -17,39 +18,47 @@ function ProductList() {
       });
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="loading">Loading...</div>;
 
   return (
-    <div>
-      <h2>Products</h2>
-      {products.length === 0 ? (
-        <div>No products found.</div>
-      ) : (
-        <ul>
-          {products.map(product => (
-            <li key={product._id}>
-              <img src={product.image} alt={product.name} width={100} />
-              <h3>{product.name}</h3>
-              <p>Brand: {product.brand}</p>
-              <p>Specs: RAM - {product.specs.RAM}, Storage - {product.specs.Storage}</p>
-              <ul>
-                {product.prices.map((priceObj, idx) => (
-                  <li key={idx}>
-                    {priceObj.source}: ₹{priceObj.price} (<a href={priceObj.url} target="_blank" rel="noopener noreferrer">Buy</a>)
-                  </li>
-                ))}
-              </ul>
-              <ul>
-                {product.affiliateLinks.map((linkObj, idx) => (
-                  <li key={idx}>
-                    Affiliate: <a href={linkObj.url} target="_blank" rel="noopener noreferrer">{linkObj.source}</a>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="container">
+      <header className="header">
+        <h1>NPA Product Catalog</h1>
+      </header>
+      <main>
+        {products.length === 0 ? (
+          <div className="empty">No products found.</div>
+        ) : (
+          <div className="grid">
+            {products.map(product => (
+              <div className="card" key={product._id}>
+                <img src={product.image} alt={product.name} className="product-image" />
+                <h2 className="product-name">{product.name}</h2>
+                <div className="brand">{product.brand}</div>
+                <div className="specs">
+                  <span>RAM: {product.specs?.RAM}</span>
+                  <span>Storage: {product.specs?.Storage}</span>
+                </div>
+                <div className="prices">
+                  {product.prices.map((p, i) => (
+                    <div key={i}>
+                      <b>{p.source}:</b> ₹{p.price} <a href={p.url} target="_blank" rel="noopener noreferrer">Buy</a>
+                    </div>
+                  ))}
+                </div>
+                <div className="affiliate-links">
+                  {product.affiliateLinks.map((link, i) => (
+                    <a key={i} href={link.url} target="_blank" rel="noopener noreferrer">{link.source} Affiliate</a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </main>
+      <footer className="footer">
+        <span>© 2025 NPA</span>
+      </footer>
     </div>
   );
 }

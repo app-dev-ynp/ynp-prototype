@@ -1,0 +1,85 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f6f8fa;
+}
+.header {
+  background: #24292f;
+  color: #fff;
+  padding: 1rem 2rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.footer {
+  background: #24292f;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+}
+.card:hover {
+  box-shadow: 0 5px 16px rgba(0,0,0,0.12);
+}
+.product-image {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+.product-name {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+.brand {
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+.specs {
+  font-size: 0.95rem;
+  color: #444;
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+.prices {
+  margin-bottom: 1rem;
+}
+.affiliate-links a {
+  color: #0969da;
+  text-decoration: underline;
+  font-size: 0.95rem;
+  margin-right: 1rem;
+}
+.loading, .empty {
+  text-align: center;
+  padding: 4rem 0;
+  color: #888;
+  font-size: 1.1rem;
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .header, .footer {
+    padding: 0.5rem;
+  }
+}
